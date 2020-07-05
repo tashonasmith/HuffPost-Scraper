@@ -1,7 +1,7 @@
 DONE - 1. Create models for articles, comments, and index
 DONE - 2. Create server.js requiring express, handlebars mongoose, axios, morgan and cheerio.
 DONE - 3. Create basic HTML structure for index and saved pages
-4. In server.js, create get route for scrape, get route for 1 article by id, post route for saving comments to article by id, get route to delete comments, post route to save articles, get route to delete all scraped articles.
+DONE - 4. In server.js, create get route for scrape, get route for 1 article by id, post route for saving comments to article by id, get route to delete comments, post route to save articles, route to delete all scraped articles, route to delete specific article from index page and saved page.
 5. Write code in handlebars files to render articles to pages.
 6.Create functionality in app.js for getJSON, onclick functions, and ajax calls.
 7. CSS

@@ -14,16 +14,25 @@
   <div class="jumbotron jumbotron-fluid">
     <div class="container">
       <h1 class="display-4">Mongo Scraper</h1>
-      <p class="lead">Buzzfeed Edition</p>
+      <p class="lead">HuffPost Edition</p>
     </div>
   </div>
 
-  <div class="card">
-    <h5 class="card-header">Featured</h5>
-    <div class="card-body">
-      <h5 class="card-title">Special title treatment</h5>
-      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
-    </div>
-  </div>
+
+  {{#if article}}
+      {{#each article}}
+        <div class="card">  
+          <h5 class="card-header"></h5>
+          <div class="card-body">
+            <h5 class="card-title">{{this.title}}</h5>
+            <a href="{{this.link}}">
+              <p class="card-text">Read Article</p>
+            </a>
+           <button type="button" class="btn btn-success save" data-id={{this._id}}>Save Article</button>
+          </div>
+        </div>
+      {{/each}}
+    {{else}}  
+      <h4>Oops. Looks like we don't have any new articles</h4>
+    {{/if}}  
 </div>  
