@@ -25,12 +25,12 @@ app.use(express.static("public"));
 
 mongoose.connect("mongodb://localhost/huffpostscraper", { useNewUrlParser: true });
 
+//GET route for scraping from HuffPost
 app.get("/scrape", function(req, res) {
     axios.get("https://www.huffpost.com/").then(function(response) {
       var $ = cheerio.load(response.data);
-  
       $("div.card__headlines").each(function(i, element) {
-        // Save an empty result object
+        
         var result = {};
   
         result.title = $(this)
@@ -66,18 +66,28 @@ app.get("/scrape", function(req, res) {
     });
 });
 
+//GET route for retrieving all articles from db
 app.get("/articles", function(req, res) {
-    // Grab every document in the Articles collection
     db.Article.find({})
       .then(function(dbArticle) {
-        // If we were able to successfully find Articles, send them back to the client
         res.json(dbArticle);
       })
       .catch(function(err) {
-        // If an error occurred, send it to the client
         res.json(err);
       });
 });
+
+//GET route for retrieving a specific article by id, then populating the response object with its corresponding note
+app.get("/articles/:id", function(req, res) {
+    db.Article.findOne({ _id: req.params.id })
+    .populate("Comment")
+    .then(function(dbArticle) {
+        res.json(dbArticle);
+    })
+    .catch(function(err) {
+        res.json(err);
+    })
+})
 
 
   
