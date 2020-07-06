@@ -42,7 +42,7 @@ app.use(express.static("public"));
 
 // mongoose.connect(MONGODB_URI);
 
-mongoose.connect("mongodb://tashona:password11@ds113866.mlab.com:13866/heroku_s4k965kr")
+mongoose.connect("mongodb://heroku_s4k965kr:password11@ds113866.mlab.com:13866/heroku_s4k965kr")
 
 //GET route to retrieve index page
 app.get("/", function(req, res) {
