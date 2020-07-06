@@ -1,0 +1,45 @@
+body {
+    background-color: #55bf99;
+}
+
+#scrape {
+    background-color: black;
+    border: none;
+    margin-right: 5px;
+}
+
+#clear {
+    background-color: black;
+    border: none;
+}
+
+#save {
+    background-color: black;
+    border: none;
+}
+
+.nav-link {
+    color: black;
+}
+
+.lead {
+    font-weight: bold;
+}
+
+.jumbotron {
+    text-align: center;
+}
+
+.card {
+    margin-bottom: 10px;
+}
+
+#add-comment {
+    background-color: black;
+    border: none;
+}
+
+#delete-article {
+    background-color: black;
+    border: none;
+}

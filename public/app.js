@@ -15,6 +15,7 @@ $("#scrape").on("click", function() {
     })
 });
 
+//Only works on article at the top of the list for some reason
 $("#save").on("click", function() {
     var thisId = $(this).attr("data-id");
     $.ajax({
@@ -25,6 +26,7 @@ $("#save").on("click", function() {
     })
 });
 
+
 $("#clear").on("click", function() {
     $.ajax({
         method: "DELETE",
@@ -34,6 +36,7 @@ $("#clear").on("click", function() {
     })
 })
 
+//Only works on article at the top of the list for some reason
 $("#delete-article").on("click", function() {
     var thisId = $(this).attr("data-id");
     $.ajax({
@@ -44,3 +47,19 @@ $("#delete-article").on("click", function() {
     })
 })
 
+//Only works on article at the top of the list for some reason
+$("#add-comment").on("click", function() {
+    $('#modelWindow').modal('show');
+})
+
+$("#save-comment").on("click", function() {
+    var thisId = $(this).attr("data-id");
+    var comment = $("#comment-text").val()
+    $.post("/articles/" + thisId, {
+        comment: comment
+    },
+    function() {
+        window.location = "/saved"
+    })
+    console.log(comment)
+})
