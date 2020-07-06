@@ -56,18 +56,16 @@ app.get("/", function(req, res) {
 
 //GET route to retrieve saved page
 app.get("/saved", function(req, res) {
-    db.Article.find({"saved": true}).lean()
-    .populate("notes")
-    .then(function(err, articles) {
-      var articleObject = {
-        article: articles
-      };
-      if (err) {
-        console.log(err)
-      }
-      console.log(articleObject)
-      res.render("saved", articleObject);
-    });
+    db.Article.find({"saved": true}, function(err, articles) {
+        var articleObject = {
+            article: articles
+          };
+          if (err) {
+            console.log(err)
+          }
+          console.log(articleObject)
+          res.render("saved", articleObject); 
+    }).lean()
 });
   
   
@@ -115,7 +113,7 @@ app.get("/scrape", function(req, res) {
 
 //GET route for retrieving all articles from db
 app.get("/articles", function(req, res) {
-    db.Article.find({})
+    db.Article.find({}).lean()
       .then(function(dbArticle) {
         res.json(dbArticle);
       })
@@ -126,7 +124,7 @@ app.get("/articles", function(req, res) {
 
 //GET route for retrieving a specific article by id, then populating the response object with its corresponding note
 app.get("/articles/:id", function(req, res) {
-    db.Article.findOne({ _id: req.params.id })
+    db.Article.findOne({ _id: req.params.id }).lean()
     .populate("Comment")
     .then(function(dbArticle) {
         res.json(dbArticle);
@@ -138,15 +136,16 @@ app.get("/articles/:id", function(req, res) {
 
 // Find an article by id, updated saved boolean
 app.post("/articles/saved/:id", function(req, res) {
-    db.Article.findOneAndUpdate({ _id: req.params.id }, { saved: true})
+    db.Article.findOneAndUpdate({ _id: req.params.id }, { saved: true}).lean()
     .then(function(dbArticle) {
       res.json(dbArticle);
+      console.log("article saved")
     });
 });
 
 //Retrieve all saved articles
 app.get("/articles/saved", function(req, res) {
-    db.Article.find({ saved: true })
+    db.Article.find({ saved: true }).lean()
     .then(function(dbArticle) {
         res.json(dbArticle);
     })
@@ -172,7 +171,7 @@ app.post("articles/:id", function(req, res) {
 
 //Route for deleting Article by id
 app.delete("/articles/delete/:id", function(req, res) {
-    db.Article.findOneAndDelete({ _id: req.params.id })
+    db.Article.findOneAndDelete({ _id: req.params.id }).lean()
     .then(function(dbArticle) {
       console.log("Article Deleted")
       res.json(dbArticle)
@@ -184,12 +183,20 @@ app.delete("/articles/delete/:id", function(req, res) {
 
 //Route for clearing all scraped articles
 app.delete("/articles/delete", function(req, res) {
-    db.Article.remove({})
+    db.Article.deleteMany({}, function(res, err) {
+        if (err) {
+          console.log(err)
+        }
+        else {
+          res.send("All articles cleared")
+          console.log("All articles deleted")
+        }
+    }).lean()
 })
 
 //Route for getting all Comments
 app.get("/comments", function(req, res) {
-    db.Comment.find({})
+    db.Comment.find({}).lean()
       .then(function(dbComment) {
         res.json(dbComment);
       })
