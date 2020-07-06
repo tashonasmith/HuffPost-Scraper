@@ -3,6 +3,13 @@ var logger = require("morgan");
 var mongoose = require("mongoose");
 var bodyParser = require('body-parser');
 var exphbs  = require('express-handlebars');
+var path = require("path");
+
+//const express = require('express');
+// const Handlebars = require('handlebars')
+// const expressHandlebars = require('express-handlebars');
+// const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access')
+
 
 var axios = require("axios");
 var cheerio = require("cheerio");
@@ -14,8 +21,11 @@ var PORT = 3000;
 
 // Initialize Express
 var app = express();
-app.engine('handlebars', exphbs({ defaultLayout: "main"}));
+app.engine('handlebars', exphbs({ defaultLayout: "main"}), /*expressHandlebars({
+    handlebars: allowInsecurePrototypeAccess(Handlebars)
+})*/);
 app.set('view engine', 'handlebars');
+
 
 // Configure middleware
 
@@ -41,12 +51,12 @@ app.get("/", function(req, res) {
       }
       console.log(articleObject);
       res.render("index", articleObject);
-    });
+    }).lean();
 });
 
 //GET route to retrieve saved page
 app.get("/saved", function(req, res) {
-    db.Article.find({"saved": true})
+    db.Article.find({"saved": true}).lean()
     .populate("notes")
     .then(function(err, articles) {
       var articleObject = {

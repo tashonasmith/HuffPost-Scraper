@@ -1,12 +1,6 @@
 <ul class="nav">
   <li class="nav-item">
-    <a class="nav-link active" href="index.handlebars">Mongo Scraper</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="index.handlebars">Home</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="saved.handlebars">Saved Articles</a>
+    <a class="nav-link" href="/">Home</a>
   </li>
 </ul>
 
@@ -18,12 +12,16 @@
     </div>
   </div>
 
-  <div class="card">
-    <h5 class="card-header">Featured</h5>
-    <div class="card-body">
-      <h5 class="card-title">Special title treatment</h5>
-      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
-    </div>
-  </div>
+   {{#each article}}
+        <div class="card">  
+          <h5 class="card-header">{{this.title}}</h5>
+          <div class="card-body">
+            <a href="{{this.link}}"></a>  
+              <h5 class="card-title">{{this.title}}</h5>
+            </a>
+           <button type="button" class="btn btn-success save" data-id={{this._id}}>Add a Comment</button> 
+           <button type="button" class="btn btn-success save" data-id={{this._id}}>Delete Article</button>
+          </div>
+        </div>
+    {{/each}}   
 </div>  
