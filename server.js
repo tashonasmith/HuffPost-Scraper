@@ -38,7 +38,9 @@ app.use(bodyParser.urlencoded({ extended: true}));
 // Make public a static folder
 app.use(express.static("public"));
 
-mongoose.connect("mongodb://localhost/huffpostscraper", { useNewUrlParser: true });
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/huffpostscraper";
+
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 //GET route to retrieve index page
 app.get("/", function(req, res) {
