@@ -38,11 +38,11 @@ app.use(bodyParser.urlencoded({ extended: true}));
 // Make public a static folder
 app.use(express.static("public"));
 
-// var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/huffpostscraper";
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://tashona:password11@ds149365.mlab.com:49365/heroku_r93m4kbk";
 
-// mongoose.connect(MONGODB_URI);
+mongoose.connect(MONGODB_URI);
 
-mongoose.connect("mongodb://tashona:password11@ds149365.mlab.com:49365/heroku_r93m4kbk")
+//mongoose.connect("mongodb://tashona:password11@ds149365.mlab.com:49365/heroku_r93m4kbk")
 
 //GET route to retrieve index page
 app.get("/", function(req, res) {
