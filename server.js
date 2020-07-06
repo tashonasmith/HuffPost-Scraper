@@ -38,7 +38,9 @@ app.use(bodyParser.urlencoded({ extended: true}));
 // Make public a static folder
 app.use(express.static("public"));
 
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://tashona:password11@ds149365.mlab.com:49365/heroku_r93m4kbk";
+//var MONGODB_URI = process.env.MONGODB_URI || "mongodb://tashona:password11@ds149365.mlab.com:49365/heroku_r93m4kbk";
+
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/huffpostscraper";
 
 mongoose.connect(MONGODB_URI);
 
