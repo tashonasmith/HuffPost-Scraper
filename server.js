@@ -93,18 +93,6 @@ app.get("/scrape", function(req, res) {
           console.log(err);
         });
       });
-      
-    //   var entry = new Article(result);
-
-    //   entry.save(function(err, res) {
-    //     if (err) {
-    //       console.log(err);
-    //     }
-    //     else {
-    //       console.log(res);
-    //     }
-    //   });
-  
       // Send a message to the client
       res.send("Scrape Complete");
       console.log("Scrape Complete");

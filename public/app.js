@@ -33,3 +33,14 @@ $("#clear").on("click", function() {
         window.location = "/"
     })
 })
+
+$("#delete-article").on("click", function() {
+    var thisId = $(this).attr("data-id");
+    $.ajax({
+        method: "DELETE",
+        url: "/articles/delete/" + thisId
+    }).done(function() {
+        window.location = "/saved"
+    })
+})
+
