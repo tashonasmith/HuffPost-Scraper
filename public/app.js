@@ -16,7 +16,7 @@ $("#scrape").on("click", function() {
 });
 
 //Only works on article at the top of the list for some reason
-$("#save").on("click", function() {
+$(".save").on("click", function() {
     var thisId = $(this).attr("data-id");
     $.ajax({
         method: "POST",
@@ -37,7 +37,7 @@ $("#clear").on("click", function() {
 })
 
 //Only works on article at the top of the list for some reason
-$("#delete-article").on("click", function() {
+$(".delete").on("click", function() {
     var thisId = $(this).attr("data-id");
     $.ajax({
         method: "DELETE",
