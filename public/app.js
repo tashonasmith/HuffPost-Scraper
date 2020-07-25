@@ -36,7 +36,7 @@ $("#clear").on("click", function() {
     })
 })
 
-//Only works on article at the top of the list for some reason
+
 $(".delete").on("click", function() {
     var thisId = $(this).attr("data-id");
     $.ajax({
@@ -47,7 +47,7 @@ $(".delete").on("click", function() {
     })
 })
 
-//Only works on article at the top of the list for some reason
+
 $("#add-comment").on("click", function() {
     $('#modelWindow').modal('show');
 })
@@ -63,3 +63,13 @@ $("#save-comment").on("click", function() {
     })
     console.log(comment)
 })
+
+// $("#view-comments").on("click", function() {
+//     var thisId = $(this).attr("data-id");
+//     $.ajax({
+//         method: "GET",
+//         url: "/articles/" + thisId + "/comments"
+//     }).done(function() {
+//         $('.view-comment-modal').modal('show');
+//     })
+// })

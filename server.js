@@ -148,6 +148,18 @@ app.get("/articles/saved", function(req, res) {
     })
 });
 
+//GET route for retrieving all comments for specific article by article id
+app.get("/articles/:id/comments", function(req, res) {
+  db.Comment.find({})
+  .then(function(dbComment) {
+    res.json(dbComment)
+  })
+  .catch(function(err) {
+    res.json(err)
+  })
+})
+
+
 //Route for saving/updating an Article's associated Comment
 app.post("/articles/:id", function(req, res) {
     db.Comment.create(req.body)
